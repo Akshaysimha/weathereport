@@ -8,8 +8,8 @@ class HomeController < ApplicationController
     @data = []
     @temp = []
     stats['list'].each do |s|
-      @data << [s['dt_txt'].to_time.to_i * 1000, (s["main"]["temp"] / 10).round(2)]
-      @temp << (s["main"]["temp"] / 10).round(2)
+      @data << [s['dt_txt'].to_time.to_i * 1000, (s["main"]["temp"] - 273.15).round(2)]
+      @temp << (s["main"]["temp"] - 273.15).round(2)
     end
     @min_temp = @temp.sort.first
     @max_temp = @temp.sort.last
