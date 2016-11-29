@@ -1,3 +1,9 @@
+<div>
+  <span>
+    <p>Min Temp</p><p><%= @min_temp %></p>
+    <p>Max Temp</p><p><%= @max_temp %></p>
+  </span>
+</div>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 <script>
@@ -9,12 +15,8 @@ $(function () {
         },
         xAxis: {
           type: "datetime",
-          dateTimeLabelFormats : {
-              hour: '%I %p',
-              minute: '%I:%M %p'
-          },
           title: {
-              text: 'Date'
+              text: 'Time'
           }
         },
         yAxis: {
@@ -33,7 +35,7 @@ $(function () {
         },
         series: [{
             name: 'Temperature',
-            data:<%= @temp %>
+            data:<%= @data %>
         }]
     });
 });

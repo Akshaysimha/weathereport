@@ -5,11 +5,13 @@ class HomeController < ApplicationController
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
     stats = JSON.parse(response.body)
-    @date = []
+    @data = []
     @temp = []
     stats['list'].each do |s|
-      @date << s['dt_txt'].to_date
+      @data << [s['dt_txt'].to_time.to_i * 1000, (s["main"]["temp"] / 10).round(2)]
       @temp << (s["main"]["temp"] / 10).round(2)
     end
+    @min_temp = @temp.sort.first
+    @max_temp = @temp.sort.last
   end
 end
