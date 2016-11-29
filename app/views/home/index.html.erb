@@ -1,2 +1,40 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script>
+$(function () {
+    Highcharts.chart('container', {
+        title: {
+            text: 'Daily Weather forcast',
+            x: -20 //center
+        },
+        xAxis: {
+          type: "datetime",
+          dateTimeLabelFormats : {
+              hour: '%I %p',
+              minute: '%I:%M %p'
+          },
+          title: {
+              text: 'Date'
+          }
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            },
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Temperature',
+            data:<%= @temp %>
+        }]
+    });
+});
+</script>
